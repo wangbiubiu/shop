@@ -15,7 +15,7 @@ class BrandController extends \yii\web\Controller
         $page = new Pagination([
            //            获取总条数
            'totalCount' => $rows->count(),
-           'defaultPageSize' => 10,
+           'defaultPageSize' => 5,
        ]);
         $rows = $rows->offset($page->offset)
                       ->limit($page->pageSize)
@@ -42,6 +42,7 @@ class BrandController extends \yii\web\Controller
 //            验证
             if($brandMode->validate()){
             //保存上传文件
+//                var_dump(!$brandMode->logoImg==NULL);exit;
                 if(!$brandMode->logoImg==NULL){
                     $fileName = '/upload/' . uniqid() . '.' . $brandMode->logoImg->extension;
                     if( $brandMode->logoImg->saveAs( \Yii::getAlias( '@webroot' ) . $fileName, FALSE ) ){
@@ -82,7 +83,7 @@ class BrandController extends \yii\web\Controller
             //            验证
             if($brandMode->validate()){
                 //保存上传文件
-                if(!$brandMode->logoImg==NULL){
+                if($brandMode->logoImg!==NULL){
                     $fileName = '/upload/' . uniqid() . '.' . $brandMode->logoImg->extension;
                     if( $brandMode->logoImg->saveAs( \Yii::getAlias( '@webroot' ) . $fileName, FALSE ) ){
                         $brandMode->logo = $fileName;

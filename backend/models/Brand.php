@@ -36,9 +36,9 @@ class Brand extends \yii\db\ActiveRecord
             [['intro'], 'string'],
             [['sort', 'status'], 'integer'],
             [['name'], 'string', 'max' => 50],
-//            [['logo'], 'string', 'max' => 255],
 //            [['logoImg','file',]],
-            ['logoImg','file','extensions'=>['jpg','png','gif'],'skipOnEmpty'=>TRUE],//skipOnEmpty 字段为空跳过当前验证
+            ['logoImg','file','extensions' => ['png', 'jpg', 'gif'],'skipOnEmpty'=>true],//skipOnEmpty 字段为空跳过当前验证 FALSE为必须上传
+//            ['logoImg', 'file', 'extensions' => ['png', 'jpg', 'gif']],
         ];
     }
 
