@@ -48,10 +48,19 @@ class Ar extends \yii\db\ActiveRecord
             'id' => '自增主键',
             'name' => '名称',
             'intro' => '简介',
-            'article_category_id' => '文章分类id',
+            'article_category_id' => '分类',
             'sort' => '排序',
             'status' => '状态',
             'create_time' => '创建时间',
         ];
     }
+
+//    /**
+//     * 联合查询
+//     */
+//    public function getContent()
+//    {
+//        //这儿对应关系视情况而定      被关联的表对应的模型路径↓   被关联表的字段↓  本模型中的字段↓
+//        return $this->hasOne('backend\models\ArticleDetail', ['id' => 'id']);
+//    }
 }

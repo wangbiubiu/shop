@@ -16,5 +16,5 @@ echo $form->field($model,'sort');
 echo $form->field($model,'status')->radioList(['0'=>'隐藏','1'=>'显示']);
 //提交
 echo \yii\bootstrap\Html::submitButton('提交',['class'=>'btn btn-info']);?>
-<a class="btn btn-default" href="<?=\yii\helpers\Url::to(['articlecategory/index']) ?>">返回</a>
+ <a class="btn btn-default" href="<?=\yii\helpers\Url::to(['articlecategory/index']) ?>">返回</a>
 <?php $from=\yii\bootstrap\ActiveForm::end(); ?>

@@ -1,6 +1,7 @@
 <?php
 ?>
 <a class="btn btn-default" href="<?=\yii\helpers\Url::to(['brand/add']) ?>">添加品牌</a>
+    <a class="btn btn-default" href="<?=\yii\helpers\Url::to(['brand/re']) ?>">回收站</a>
 <table class="table">
     <tr>
         <th>品牌编号</th>

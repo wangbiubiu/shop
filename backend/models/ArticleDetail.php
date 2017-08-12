@@ -37,7 +37,7 @@ class ArticleDetail extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => '自增主键',
+            'id' => '编号',
             'content' => '文章内容',
         ];
     }

@@ -1,6 +1,7 @@
 <?php
 ?>
     <a class="btn btn-default" href="<?=\yii\helpers\Url::to(['articlecategory/add']) ?>">添加分类</a>
+    <a class="btn btn-default" href="<?=\yii\helpers\Url::to(['articlecategory/re']) ?>">回收站</a>
     <table class="table">
         <tr>
             <th>分类编号</th>
