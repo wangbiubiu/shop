@@ -3,6 +3,7 @@
 namespace backend\controllers;
 
 use backend\models\Brand;
+use backend\models\Goods;
 use yii\data\Pagination;
 use yii\helpers\Url;
 use flyok666\uploadifive\UploadAction;
@@ -175,6 +176,9 @@ class BrandController extends \yii\web\Controller
         return $this->render('add',['model'=>$brandMode]);
     }
     public function actionDelete($id){
+        $goodsB=Goods::findOne(['brand_id'=>$id]);
+        if($goodsB==NULL){
+
         //        echo  $id;
         $brandMode = Brand::findOne( [ 'id' => $id ] );
         //        修改状态
@@ -189,7 +193,12 @@ class BrandController extends \yii\web\Controller
         }
 //        失败提示
         \Yii::$app->session->setFlash('danger',$brandMode->getErrors());
-        return $this->redirect(['brand/add']);
+        return $this->redirect(['brand/index']);
+        }else{
+            $url=Url::to(['goods/index']);
+            \Yii::$app->session->setFlash('danger',"请先删除属于该分类的商品(包括回收站！)<a href='$url'>查看商品列表</a>");
+            return $this->redirect(['brand/index']);
+        }
     }
 //    显示回收站
     public function actionRe(){

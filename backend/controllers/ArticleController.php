@@ -12,12 +12,14 @@ class ArticleController extends \yii\web\Controller
 {
     public function actionIndex()
     {
-
         $name=\Yii::$app->request->get('name')?\Yii::$app->request->get('name'):"";
         $intro=\Yii::$app->request->get('intro')?\Yii::$app->request->get('intro'):"";
 //        $intro=\Yii::$app->get('intro');
 //        var_dump($name);exit;
-        $rows=Ar::find()->select('article.*,article_category.name as c_name')->innerJoin('article_category','article.article_category_id=article_category.id')->where("article.status>-1 and article.name like '%$name%' and article.intro like '%$intro%'");
+        $rows=Ar::find()->andWhere(['>','status',-1])
+                ->andWhere(['like','name',$name])
+                ->andWhere(['like','intro',$intro]);
+//        $rows=Ar::find()->where("article.status>-1 and article.name like '%$name%' and article.intro like '%$intro%'");
         $page = new Pagination([
                                    //            获取总条数
                                    'totalCount' => $rows->count(),
@@ -25,7 +27,6 @@ class ArticleController extends \yii\web\Controller
                                ]);
         $rows = $rows->offset($page->offset)
                      ->limit($page->pageSize)
-            ->asArray()
                      ->all();
 //        分配模型用于显示搜索
         $model=new Ar();

@@ -58,9 +58,8 @@ class Ar extends \yii\db\ActiveRecord
 //    /**
 //     * 联合查询
 //     */
-//    public function getContent()
-//    {
-//        //这儿对应关系视情况而定      被关联的表对应的模型路径↓   被关联表的字段↓  本模型中的字段↓
-//        return $this->hasOne('backend\models\ArticleDetail', ['id' => 'id']);
-//    }
+    public function getContent()
+    {
+        return $this->hasOne(ArticleCategory::className(), ['id' => 'article_category_id']);
+    }
 }

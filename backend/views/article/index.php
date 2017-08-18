@@ -24,16 +24,16 @@
         </tr>
         <?php foreach($rows as $v): ?>
             <tr>
-                <td><?= $v['id']; ?></td>
-                <td><?= $v['name']; ?></td>
-                <td><?= $v['intro']; ?></td>
-                <td><?= $v['c_name']; ?></td>
-                <td><?= $v['sort']; ?></td>
-                <td><?= $v['status']?'是':'否'; ?></td>
-                <td><?= $v['create_time']; ?></td>
-                <td><a class="btn btn-default" href=<?= \yii\helpers\Url::to(['article/content','id'=>$v['id']])?>>查看内容</a>
-                    <a class="btn btn-default" href=<?= \yii\helpers\Url::to(['article/edit','id'=>$v['id']])?>>修改</a>
-                    <a class="btn btn-danger" href=<?= \yii\helpers\Url::to(['article/delete','id'=>$v['id']])?>>删除</a></td>
+                <td><?= $v->id; ?></td>
+                <td><?= $v->name; ?></td>
+                <td><?= $v->intro; ?></td>
+                <td><?= $v->content->name; ?></td>
+                <td><?= $v->sort; ?></td>
+                <td><?= $v->status?'是':'否'; ?></td>
+                <td><?= $v->create_time; ?></td>
+                <td><a class="btn btn-default" href=<?= \yii\helpers\Url::to(['article/content','id'=>$v->id])?>>查看内容</a>
+                    <a class="btn btn-default" href=<?= \yii\helpers\Url::to(['article/edit','id'=>$v->id])?>>修改</a>
+                    <a class="btn btn-danger" href=<?= \yii\helpers\Url::to(['article/delete','id'=>$v->id])?>>删除</a></td>
             </tr>
         <?php endforeach;?>
     </table>
