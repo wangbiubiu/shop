@@ -12,7 +12,7 @@ return [
     'controllerNamespace' => 'backend\controllers',
     'bootstrap' => ['log'],
     'modules' => [],
-    'defaultRoute' => 'admin/index',
+    'defaultRoute' => 'admin/login',
     'components' => [
         'request' => [
             'csrfParam' => '_csrf-backend',

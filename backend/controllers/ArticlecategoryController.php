@@ -87,14 +87,16 @@ class ArticlecategoryController extends \yii\web\Controller
         if($model->validate()){
             $model->save();
             //            成功跳转
-            $url=Url::to(['articlecategory/re']);
-            \Yii::$app->session->setFlash('success', "删除成功:<a href='$url'>查看回收站</a>");
-            return $this->redirect(['articlecategory/index']);
+//            $url=Url::to(['articlecategory/re']);
+//            \Yii::$app->session->setFlash('success', "删除成功:<a href='$url'>查看回收站</a>");
+//            return $this->redirect(['articlecategory/index']);
+            echo TRUE;exit;
         }
-        }
+        }else{
 //        失败跳转
         \Yii::$app->session->setFlash('danger','请先删除属于该类的文章(包括回收站)');
         return $this->redirect(['articlecategory/index']);
+        }
     }
 //    回收站
     public function actionRe()
@@ -116,11 +118,10 @@ class ArticlecategoryController extends \yii\web\Controller
     public function actionDeletes($id){
         $res=ArticleCategory::deleteAll("id=$id");
         if($res){
-            \Yii::$app->session->setFlash( 'success', '删除成功' );
-            return $this->redirect(['articlecategory/re']);
+//            \Yii::$app->session->setFlash( 'success', '删除成功' );
+//            return $this->redirect(['articlecategory/re']);
+            echo TRUE;
         }
-        \Yii::$app->session->setFlash( 'DANGER', '删除失败' );
-        return $this->redirect(['articlecategory/re']);
     }
     //    还原
     public function actionRes($id){

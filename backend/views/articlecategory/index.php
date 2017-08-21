@@ -2,14 +2,16 @@
 ?>
     <a class="btn btn-default" href="<?=\yii\helpers\Url::to(['articlecategory/add']) ?>">添加分类</a>
     <a class="btn btn-default" href="<?=\yii\helpers\Url::to(['articlecategory/re']) ?>">回收站</a>
-    <table class="table">
+    <table class="table table-bordered table-responsive">
         <tr>
             <th>分类编号</th>
             <th>分类名称</th>
             <th>分类排名</th>
             <th>前台是否显示</th>
             <th>分类简介</th>
-            <th>操作</th>
+            <?php if(\Yii::$app->user->can('articlecategory/edit') and \Yii::$app->user->can('articlecategory/delete')){ ?>
+                <th>操作</th>
+            <?php }?>
         </tr>
         <?php foreach($rows as $v): ?>
             <tr>
@@ -20,10 +22,16 @@
                         echo '是';
                     }else{echo '否';}; ?></td>
                 <td><?= $v->intro; ?></td>
+                <?php if(\Yii::$app->user->can('articlecategory/edit') and \Yii::$app->user->can('articlecategory/delete')){ ?>
                 <td>
+                    <?php if(\Yii::$app->user->can('articlecategory/edit')){ ?>
                     <a class="btn btn-default" href="<?=\yii\helpers\Url::to(['articlecategory/edit','id'=>$v->id]);?>">编辑分类</a>
-                    <a class="btn btn-danger" href="<?=\yii\helpers\Url::to(['articlecategory/delete','id'=>$v->id]);?>">删除分类</a>
+                    <?php }?>
+                    <?php if(\Yii::$app->user->can('articlecategory/delete')){ ?>
+                    <input class="btn btn-danger" type="button" id="<?= $v->id?>" onclick="delmenu(<?=$v->id?>)"value="删除"></td>
+                    <?php }?>
                 </td>
+                <?php }?>
             </tr>
         <?php endforeach; ?>
     </table>
@@ -34,6 +42,24 @@
                                        //   'prevPageLabel' => '<<<',	//改变上一页按钮的字符，设置为fase不显示
                                        'firstPageLabel' => '首页',		//首页，默认不显示
                                        'lastPageLabel' => '尾页',		//尾页，默认不显示
-                                       'hideOnSinglePage' => false,	//如果你的数据过少，不够2页，默认不显示分页，可以设置为false
+//                                       'hideOnSinglePage' => false,	//如果你的数据过少，不够2页，默认不显示分页，可以设置为false
                                        //'options' => ['class' => '样式']		//设置样式
                                    ])?>
+<script>
+    function delmenu(id) {
+//弹窗提示是否删除
+        var isdel = confirm("删除?");
+//返回true表示删除
+        if (isdel === true){
+//利用Ajax请求根据id删除数据
+            $.getJSON("http://admin.yiishop.com/articlecategory/delete","id="+id+"",function (data){
+//判定数据库是否删除成功成功返回1
+                if (data === 1){
+//根据id获取对应的父节点并删除
+//console.log($("#"+id+"").parent().parent());
+                    $("#"+id+"").parent().parent().remove();
+                }
+            })
+        }
+    }
+</script>

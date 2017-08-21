@@ -35,26 +35,33 @@ AppAsset::register($this);
             'class' => 'navbar-inverse navbar-fixed-top',
         ],
     ]);
+//    $menuItems = [
+//    ];
     $menuItems = [
-        ['label' => '品牌管理', 'url' => ['/brand/index']],
-        ['label' => '商品分类管理', 'url' => ['/goodscategory/index']],
-        ['label' => '商品管理', 'url' => ['/goods/index']],
-        ['label' => '文章分类', 'url' => ['/articlecategory/index']],
-        ['label' => '文章管理', 'url' => ['/article/index']],
-        ['label' => '用户管理', 'url' => ['/admin/index']],
-        ['label' => '密码修改', 'url' => ['/admin/modify']],
+//        ['label' => '品牌管理', 'url' => ['/brand/index']],
+//        ['label' => '商品分类管理', 'url' => ['/goodscategory/index']],
+//        ['label' => '商品管理', 'url' => ['/goods/index']],
+//        ['label' => '文章分类', 'url' => ['/articlecategory/index']],
+//        ['label' => '文章管理', 'url' => ['/article/index']],
+//        ['label' => '用户管理', 'url' => ['/admin/index']],
+//        ['label' => '密码修改', 'url' => ['/admin/modify']],
+//        ['label' => '权限管理', 'url' => ['/rbac/permission-index']],
+//        ['label' => '角色管理', 'url' => ['/rbac/role-index']],
+//        ['label' => '菜单管理', 'url' => ['/menu/index']],
     ];
     if (Yii::$app->user->isGuest) {
         $menuItems[] = ['label' => 'Login', 'url' => ['/admin/login']];
     } else {
+        $menuItems[] =['label' => '首页', 'url' => ['/admin/welcome']];
+        $menuItems = array_merge($menuItems,Yii::$app->user->identity->getMenuItems());
         $menuItems[] = '<li>'
-            . Html::beginForm(['/admin/logout'], 'post')
-            . Html::submitButton(
+                       . Html::beginForm(['/site/logout'], 'post')
+                       . Html::submitButton(
                 'Logout (' . Yii::$app->user->identity->username . ')',
                 ['class' => 'btn btn-link logout']
             )
-            . Html::endForm()
-            . '</li>';
+                       . Html::endForm()
+                       . '</li>';
     }
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],

@@ -187,13 +187,9 @@ class BrandController extends \yii\web\Controller
         if( $brandMode->validate() ){
             //        提交
             $url=Url::to(['brand/re']);
-            \Yii::$app->session->setFlash('success', "删除成功:<a href='$url'>查看回收站</a>");
             $brandMode->save();
-            return $this->redirect(['brand/index']);
+            echo TRUE;
         }
-//        失败提示
-        \Yii::$app->session->setFlash('danger',$brandMode->getErrors());
-        return $this->redirect(['brand/index']);
         }else{
             $url=Url::to(['goods/index']);
             \Yii::$app->session->setFlash('danger',"请先删除属于该分类的商品(包括回收站！)<a href='$url'>查看商品列表</a>");
@@ -219,11 +215,9 @@ class BrandController extends \yii\web\Controller
     public function actionDeletes($id){
         $res=Brand::deleteAll("id=$id");
         if($res){
-            \Yii::$app->session->setFlash( 'success', '删除成功' );
-            return $this->redirect(['brand/re']);
+//            return $this->redirect(['brand/re']);
+            echo TRUE;
         }
-        \Yii::$app->session->setFlash( 'DANGER', '删除失败' );
-        return $this->redirect(['brand/re']);
     }
 //    还原
     public function actionRes($id){

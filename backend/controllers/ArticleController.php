@@ -115,12 +115,11 @@ class ArticleController extends \yii\web\Controller
         $model->status=-1;
         if($model->validate()){
             $model->save();
-            $url=Url::to(['article/re']);
-            \Yii::$app->session->setFlash('success', "删除成功:<a href='$url'>查看回收站</a>");
-            return $this->redirect(['article/index']);
+//            $url=Url::to(['article/re']);
+//            \Yii::$app->session->setFlash('success', "删除成功:<a href='$url'>查看回收站</a>");
+//            return $this->redirect(['article/index']);
+            echo TRUE;
         }
-        \Yii::$app->session->setFlash('danger','删除失败');
-        return $this->redirect(['article/index']);
     }
 //    回收站
     public function actionRe()
@@ -144,11 +143,8 @@ class ArticleController extends \yii\web\Controller
         $res=Ar::deleteAll("id=$id");
         $modelcont=ArticleDetail::deleteAll("id=$id");
         if($res and $modelcont){
-            \Yii::$app->session->setFlash( 'success', '删除成功' );
-            return $this->redirect(['article/re']);
+            echo TRUE;
         }
-        \Yii::$app->session->setFlash( 'DANGER', '删除失败' );
-        return $this->redirect(['article/re']);
     }
     //    还原
     public function actionRes($id){
