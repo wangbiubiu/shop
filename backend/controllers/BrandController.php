@@ -2,6 +2,7 @@
 
 namespace backend\controllers;
 
+use backend\filters\AccessFilter;
 use backend\models\Brand;
 use backend\models\Goods;
 use yii\data\Pagination;
@@ -231,5 +232,14 @@ class BrandController extends \yii\web\Controller
         }
         \Yii::$app->session->setFlash( 'DANGER', '还原失败' );
         return $this->redirect(['brand/re']);
+    }
+    public function behaviors()
+    {
+        return [
+            'rbac'=>[
+                'class'=>AccessFilter::className(),
+                'except'=>['login','logout','code','upload','welcome','s-upload'],//排除不需要权限验证的操作
+            ]
+        ];
     }
 }

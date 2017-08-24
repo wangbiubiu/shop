@@ -2,6 +2,7 @@
 
 namespace backend\controllers;
 
+use backend\filters\AccessFilter;
 use backend\models\Ar;
 use backend\models\ArticleCategory;
 use backend\models\ArticleDetail;
@@ -158,5 +159,14 @@ class ArticleController extends \yii\web\Controller
         }
         \Yii::$app->session->setFlash( 'DANGER', '还原失败' );
         return $this->redirect(['article/re']);
+    }
+    public function behaviors()
+    {
+        return [
+            'rbac'=>[
+                'class'=>AccessFilter::className(),
+                'except'=>['login','logout','code','upload','welcome','s-upload'],//排除不需要权限验证的操作
+            ]
+        ];
     }
 }

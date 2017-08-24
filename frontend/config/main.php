@@ -7,16 +7,18 @@ $params = array_merge(
 );
 
 return [
+    'language' => 'zh-CN',
     'id' => 'app-frontend',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
+    'layout'=>false,
     'controllerNamespace' => 'frontend\controllers',
     'components' => [
         'request' => [
             'csrfParam' => '_csrf-frontend',
         ],
         'user' => [
-            'identityClass' => 'common\models\User',
+            'identityClass' => \frontend\models\Member::className(),
             'enableAutoLogin' => true,
             'identityCookie' => ['name' => '_identity-frontend', 'httpOnly' => true],
         ],
@@ -43,7 +45,13 @@ return [
             'rules' => [
             ],
         ],
-
+        'sms'=>[
+            'class'=>\frontend\components\Sms::className(),
+            'ak'=>'LTAIQ1Jww3i5PXbH',
+            'sk'=>'HfolPH8PklYuGDiwa1NZu2kEyBst2i',
+            'sign'=>'小小王的店铺',
+            'template'=>'SMS_87480001'
+        ]
     ],
     'params' => $params,
 ];
