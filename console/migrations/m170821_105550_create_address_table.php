@@ -14,6 +14,7 @@ class m170821_105550_create_address_table extends Migration
     {
         $this->createTable('address', [
             'id' => $this->primaryKey(),
+            'member_id'=>$this->integer()->notNull(),
             'name'=>$this->string(50)->notNull(),
             'cmbProvince'=>$this->string(50)->notNull(),
             'cmbCity'=>$this->string(50)->notNull(),

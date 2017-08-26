@@ -15,6 +15,7 @@ use Yii;
  * @property string $address
  * @property integer $tel
  * @property integer $status
+ * * @property integer $member_id
  */
 class Address extends \yii\db\ActiveRecord
 {
@@ -32,7 +33,7 @@ class Address extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name','status', 'cmbProvince', 'cmbCity', 'cmbArea', 'address', 'tel'], 'safe'],
+            [['member_id','name','status', 'cmbProvince', 'cmbCity', 'cmbArea', 'address', 'tel'], 'safe'],
         ];
     }
 
