@@ -33,7 +33,7 @@ function(file, data, response) {
 //          数据
         $("#box1").append("<input type=hidden value="+data.fileUrl+">");
 //        使用ajax添加导入数据库
-        $.getJSON("http://admin.yiishop.com/goods/ajax","goods_id=$data->id&path="+data.fileUrl+"",function (data) {
+        $.getJSON("ajax","goods_id=$data->id&path="+data.fileUrl+"",function (data) {
                 $("#box2").empty();
                 $.each(data,function (i,v) {
                 $("#box2").append("<img class=del src="+v.path+">");
@@ -67,7 +67,7 @@ $form=\yii\bootstrap\ActiveForm::end();
 <script>
     function del(id) {
 //        console.dir(id);
-        $.getJSON("http://admin.yiishop.com/goods/del","id="+id+"&goods_id=<?= $data->id ?>",function (data) {
+        $.getJSON("del","id="+id+"&goods_id=<?= $data->id ?>",function (data) {
             $("#box2").empty();
             $.each(data,function (i,v) {
                 $("#box2").append("<img class=del src="+v.path+">");

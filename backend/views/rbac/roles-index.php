@@ -72,7 +72,7 @@ JS
 //返回true表示删除
         if (isdel === true){
 //利用Ajax请求根据id删除数据
-            $.getJSON("http://admin.yiishop.com/rbac/delete-role","name="+id+"",function (data){
+            $.getJSON("delete-role","name="+id+"",function (data){
 //判定数据库是否删除成功成功返回1
                 if (data === 1){
 //根据id获取对应的父节点并删除

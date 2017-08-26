@@ -153,7 +153,7 @@
 //返回true表示删除
         if (isdel === true){
 //利用Ajax请求根据id删除数据
-            $.post('/cart/ajax-cart',{goods_id:goods_id,amount:0},function(data){
+            $.post('ajax-cart',{goods_id:goods_id,amount:0},function(data){
                 if(data=='success'){
                     var a= $(name).closest('td').prev().children().text();
 

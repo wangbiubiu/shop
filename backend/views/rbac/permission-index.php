@@ -73,7 +73,7 @@ JS
 //返回true表示删除
         if (isdel === true){
 //利用Ajax请求根据id删除数据
-            $.getJSON("http://admin.yiishop.com/rbac/delete-permission","name="+id+"",function (data){
+            $.getJSON("delete-permission","name="+id+"",function (data){
 //判定数据库是否删除成功成功返回1
                 if (data === 1){
                     var tr=$(name).closest('tr');
