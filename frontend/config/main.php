@@ -11,6 +11,7 @@ return [
     'id' => 'app-frontend',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
+    'defaultRoute' => 'index/index',
     'layout'=>false,
     'controllerNamespace' => 'frontend\controllers',
     'components' => [

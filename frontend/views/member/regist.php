@@ -162,7 +162,7 @@
     function bindPhoneNum(){
         var tel=$('#tel').val();
         console.log(tel);
-        $.getJSON("http://www.yiishop.com/member/captcha","tel="+tel+"",function (data){
+        $.getJSON("captcha","tel="+tel+"",function (data){
             if (data == 1){
                 console.log('成功');
             }

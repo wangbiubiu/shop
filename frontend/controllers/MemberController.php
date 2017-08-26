@@ -181,4 +181,5 @@ class MemberController extends \yii\web\Controller
 //        Yii::$app->session->setFlash("success","退出成功");
         return $this->redirect(['index/index']);
     }
+
 }
